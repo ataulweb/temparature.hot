@@ -9,8 +9,26 @@ const loadtemperature = city => {
 }
 
 const displaytemperature = data =>{
-    const temperature = document.getElementById('temp')
-    temperature.innerText = data.main.temp;
+    // const temperature = document.getElementById('temp')
+    // temperature.innerText = data.main.temp;
+    setInnerTextById('temp',data.main.temp);
+    setInnerTextById('condition',data.weather[0].main);
+    console.log(data.weather[0].main)
 }
 
-loadtemperature ('Rajshahi')
+const setInnerTextById = (id, text) =>{
+    const temperature = document.getElementById(id);
+    temperature.innerText = text;
+}
+
+document.getElementById('btn-search').addEventListener('click', function(){
+    const seachField = document.getElementById('search-field');
+    const city = seachField.value;
+
+    document.getElementById('city').innerText = city;
+
+    loadtemperature (city);
+})
+
+loadtemperature ('Rajshahi');
+
